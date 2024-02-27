@@ -12,7 +12,7 @@ import { LoginComponent } from './login.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent,  canActivate: [AuthGuardService], data: { role: 'admin' }, children: [
     { path: '', component: AdminStartComponent }
@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'employee', component: EmployeeComponent, canActivate: [AuthGuardService], data: { role: 'employee' }, children: [
     { path: '', component: EmployeeStartComponent }
   ] },
-
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
